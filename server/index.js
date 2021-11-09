@@ -1,15 +1,11 @@
-const express=require('express')
-const bodyParser=require('body-parser')
-const cors=require('cors')
-const app=express()
-const apiPort=3000
+const mongoose = require('mongoose')
 
-app.use(bodyParser.urlencoded({extended:true}))
-app.use(cors())
-app.use(bodyParser.json())
+mongoose
+    .connect('mongodb://127.0.0.1:27017/cinema', { useNewUrlParser: true })
+    .catch(e => {
+        console.error('Connection error', e.message)
+    })
 
-app.get('/',(req,res)=>{
-    res.send('Hello World!!')
-})
+const db = mongoose.connection
 
-app.listen(apiPort,()=>console.log(`Server running on port ${apiPort}`))
+module.exports = db
