@@ -42,8 +42,8 @@ class MoviesUpdate extends Component {
         this.state = {
             id: this.props.match.params.id,
             name: '',
-            rating: '',
-            time: '',
+            contrasena: '',
+            edad: '',
         }
     }
 
@@ -53,29 +53,29 @@ class MoviesUpdate extends Component {
     }
 
     handleChangeInputRating = async event => {
-        const rating = event.target.validity.valid
+        const contrasena = event.target.validity.valid
             ? event.target.value
-            : this.state.rating
+            : this.state.contrasena
 
-        this.setState({ rating })
+        this.setState({ contrasena })
     }
 
     handleChangeInputTime = async event => {
-        const time = event.target.value
-        this.setState({ time })
+        const edad = event.target.value
+        this.setState({ edad })
     }
 
     handleUpdateMovie = async () => {
-        const { id, name, rating, time } = this.state
-        const arrayTime = time.split('/')
-        const payload = { name, rating, time: arrayTime }
+        const { id, name, contrasena, edad } = this.state
+        const arrayTime = edad.split('/')
+        const payload = { name, contrasena, edad: arrayTime }
 
         await api.updateMovieById(id, payload).then(res => {
             window.alert(`Movie updated successfully`)
             this.setState({
                 name: '',
-                rating: '',
-                time: '',
+                contrasena: '',
+                edad: '',
             })
         })
     }
@@ -86,13 +86,13 @@ class MoviesUpdate extends Component {
 
         this.setState({
             name: movie.data.data.name,
-            rating: movie.data.data.rating,
-            time: movie.data.data.time.join('/'),
+            contrasena: movie.data.data.contrasena,
+            edad: movie.data.data.edad.join('/'),
         })
     }
 
     render() {
-        const { name, rating, time } = this.state
+        const { name, contrasena, edad } = this.state
         return (
             <Wrapper>
                 <Title>Create Movie</Title>
@@ -104,7 +104,7 @@ class MoviesUpdate extends Component {
                     onChange={this.handleChangeInputName}
                 />
 
-                <Label>Rating: </Label>
+                <Label>Contrasena: </Label>
                 <InputText
                     type="number"
                     step="0.1"
@@ -112,14 +112,14 @@ class MoviesUpdate extends Component {
                     min="0"
                     max="10"
                     pattern="[0-9]+([,\.][0-9]+)?"
-                    value={rating}
+                    value={contrasena}
                     onChange={this.handleChangeInputRating}
                 />
 
-                <Label>Time: </Label>
+                <Label>Edad: </Label>
                 <InputText
                     type="text"
-                    value={time}
+                    value={edad}
                     onChange={this.handleChangeInputTime}
                 />
 

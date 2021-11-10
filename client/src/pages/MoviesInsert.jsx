@@ -41,8 +41,8 @@ class MoviesInsert extends Component {
 
         this.state = {
             name: '',
-            rating: '',
-            time: '',
+            edad: '',
+            contrasena: '',
         }
     }
 
@@ -52,35 +52,32 @@ class MoviesInsert extends Component {
     }
 
     handleChangeInputRating = async event => {
-        const rating = event.target.validity.valid
-            ? event.target.value
-            : this.state.rating
-
-        this.setState({ rating })
+        const contrasena = event.target.value
+        this.setState({ contrasena })
     }
 
     handleChangeInputTime = async event => {
-        const time = event.target.value
-        this.setState({ time })
+        const edad = event.target.value
+        this.setState({ edad })
     }
 
     handleIncludeMovie = async () => {
-        const { name, rating, time } = this.state
-        const arrayTime = time.split('/')
-        const payload = { name, rating, time: arrayTime }
+        const { name, contrasena, edad } = this.state
+        const arrayTime = edad.split('/')
+        const payload = { name, contrasena, time: arrayTime }
 
         await api.insertMovie(payload).then(res => {
             window.alert(`Movie inserted successfully`)
             this.setState({
                 name: '',
-                rating: '',
-                time: '',
+                contrasena: '',
+                edad: '',
             })
         })
     }
 
     render() {
-        const { name, rating, time } = this.state
+        const { name, contrasena, edad } = this.state
         return (
             <Wrapper>
                 <Title>Create Movie</Title>
@@ -92,22 +89,17 @@ class MoviesInsert extends Component {
                     onChange={this.handleChangeInputName}
                 />
 
-                <Label>Rating: </Label>
+                <Label>Contraseña: </Label>
                 <InputText
-                    type="number"
-                    step="0.1"
-                    lang="en-US"
-                    min="0"
-                    max="10"
-                    pattern="[0-9]+([,\.][0-9]+)?"
-                    value={rating}
+                    type="text"
+                    value={contrasena}
                     onChange={this.handleChangeInputRating}
                 />
 
-                <Label>Time: </Label>
+                <Label>Edad: </Label>
                 <InputText
                     type="text"
-                    value={time}
+                    value={edad}
                     onChange={this.handleChangeInputTime}
                 />
 
