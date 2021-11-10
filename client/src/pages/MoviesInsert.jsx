@@ -52,35 +52,37 @@ class MoviesInsert extends Component {
     }
 
     handleChangeInputRating = async event => {
+        const edad = event.target.validity.valid
+        ? event.target.value
+        : this.state.edad
+        this.setState({ edad })
+    }
+
+    handleChangeInputTime = async event => {
         const contrasena = event.target.value
         this.setState({ contrasena })
     }
 
-    handleChangeInputTime = async event => {
-        const edad = event.target.value
-        this.setState({ edad })
-    }
-
     handleIncludeMovie = async () => {
-        const { name, contrasena, edad } = this.state
-        const arrayTime = edad.split('/')
-        const payload = { name, contrasena, time: arrayTime }
+        const { name, edad, contrasena } = this.state
+        const arrayTime = contrasena.split('/')
+        const payload = { name, edad, time: arrayTime }
 
         await api.insertMovie(payload).then(res => {
             window.alert(`Movie inserted successfully`)
             this.setState({
                 name: '',
-                contrasena: '',
                 edad: '',
+                contrasena: '',
             })
         })
     }
 
     render() {
-        const { name, contrasena, edad } = this.state
+        const { name, edad, contrasena } = this.state
         return (
             <Wrapper>
-                <Title>Create Movie</Title>
+                <Title>Create User</Title>
 
                 <Label>Name: </Label>
                 <InputText
@@ -89,21 +91,24 @@ class MoviesInsert extends Component {
                     onChange={this.handleChangeInputName}
                 />
 
-                <Label>Contraseña: </Label>
+                <Label>Edad: </Label>
                 <InputText
-                    type="text"
-                    value={contrasena}
+                    type="number"
+                    lang="en-US"
+                    min="0"
+                    max="100"
+                    value={edad}
                     onChange={this.handleChangeInputRating}
                 />
 
-                <Label>Edad: </Label>
+                <Label>Contrasena: </Label>
                 <InputText
                     type="text"
-                    value={edad}
+                    value={contrasena}
                     onChange={this.handleChangeInputTime}
                 />
 
-                <Button onClick={this.handleIncludeMovie}>Add Movie</Button>
+                <Button onClick={this.handleIncludeMovie}>Add User</Button>
                 <CancelButton href={'/movies/list'}>Cancel</CancelButton>
             </Wrapper>
         )

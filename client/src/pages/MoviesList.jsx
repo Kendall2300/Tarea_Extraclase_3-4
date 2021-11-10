@@ -38,7 +38,7 @@ class DeleteMovie extends Component {
 
         if (
             window.confirm(
-                `Do tou want to delete the movie ${this.props.id} permanently?`,
+                `Do tou want to delete the user ${this.props.id} permanently?`,
             )
         ) {
             api.deleteMovieById(this.props.id)
@@ -87,13 +87,13 @@ class MoviesList extends Component {
                 filterable: true,
             },
             {
-                Header: 'Contrasena',
-                accessor: 'contrasena',
+                Header: 'Edad',
+                accessor: 'edad',
                 filterable: true,
             },
             {
-                Header: 'Edad',
-                accessor: 'edad',
+                Header: 'Constraseña',
+                accessor: 'contrasena',
                 Cell: props => <span>{props.value.join(' / ')}</span>,
             },
             {

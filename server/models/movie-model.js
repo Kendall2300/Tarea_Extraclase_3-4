@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const Movie = new Schema(
     {
         name: { type: String, required: true },
-        contrasena: { type: String, required: true },
+        contrasena: { type: [String], required: true },
         edad: { type: Number, required: true },
     },
     { timestamps: true },
