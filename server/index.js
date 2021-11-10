@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.send('Wat ya doing here???!!!')
 })
 
 app.use('/api', movieRouter)
