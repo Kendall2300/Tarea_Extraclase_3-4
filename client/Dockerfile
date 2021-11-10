@@ -1,4 +1,4 @@
-FROM node:14-slim
+FROM node:16
 
 WORKDIR /usr/src/app
 
@@ -9,6 +9,6 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3000
-
-CMD [ "yarn", "start" ]
+EXPOSE 8000
+RUN npm run build
+CMD [ "npm", "run", "start"]
