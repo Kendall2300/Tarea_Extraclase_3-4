@@ -6,7 +6,6 @@ COPY ./package.json ./
 COPY ./package-lock.json ./
 
 RUN npm install
-RUN npm install express body-parser cors mongoose nodemon
 
 COPY . .
 
