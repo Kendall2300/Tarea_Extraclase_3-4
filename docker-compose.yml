@@ -2,6 +2,7 @@ version: "3"
 services:
   react-app:
     image: react-app
+    build: ./client
     stdin_open: true
     ports: 
       - "8000:8000"
@@ -9,6 +10,7 @@ services:
       - mern-app
   api-server:
     image: api-server
+    build: ./server
     ports:
       - "3000:3000"
     networks:
