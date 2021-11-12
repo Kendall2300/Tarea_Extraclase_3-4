@@ -51,8 +51,8 @@ updateMovie = async (req, res) => {
             })
         }
         movie.name = body.name
-        movie.contrasena = body.contrasena
-        movie.edad = body.edad
+        movie.time = body.time
+        movie.rating = body.rating
         movie
             .save()
             .then(() => {
